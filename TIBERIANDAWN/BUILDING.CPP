@@ -3540,6 +3540,12 @@ bool BuildingClass::Captured(HouseClass * newowner)
 		}
 
 		/*
+		** Fixes that a captured defense would continue firing at its old target even when captured by the target's owner.
+		** I consider this an improvement even if the Sell-Stop bug is fixed and 'Stop' command restored for buildings. REAPERRR - 06/10/2020
+		*/
+		Assign_Target(TARGET_NONE);
+
+		/*
 		** Maybe trigger an achivement. ST - 11/14/2019 1:53PM
 		*/
 		if (newowner->IsHuman) {
