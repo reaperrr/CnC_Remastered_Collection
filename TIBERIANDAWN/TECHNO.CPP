@@ -2618,8 +2618,9 @@ ActionType TechnoClass::What_Action(CELL cell) const
 
 	/*
 	**	Disable recognizing the <CTRL> key forced fire option when dealing with buildings.
+	**	Since the (S)top key is now supported on buildings, there's no longer a reason for this. - Reaperrr 06/11/2020
 	*/
-	if (What_Am_I() == RTTI_BUILDING) ctrldown = false;
+	// if (What_Am_I() == RTTI_BUILDING) ctrldown = false;
 
 	if (cellptr->Overlay != OVERLAY_NONE) {
 		optr = &OverlayTypeClass::As_Reference(cellptr->Overlay);
