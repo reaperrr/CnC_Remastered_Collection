@@ -6654,7 +6654,7 @@ void DLLExportClass::Selected_Stop(uint64 player_id)
 			ObjectClass const * tech = CurrentObject[index];
 
 			if (tech && (tech->Can_Player_Move() || (tech->Can_Player_Fire() &&
-					tech->What_Am_I() != RTTI_BUILDING))) {
+					(tech->What_Am_I() != RTTI_BUILDING || tech->Get_Mission() != MISSION_DECONSTRUCTION)))) {
 				OutList.Add(EventClass(EventClass::IDLE, tech->As_Target()));
 			}
 		}

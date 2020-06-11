@@ -642,11 +642,13 @@ CCDebugString ("C&C95 - Primary building packet received\n");
 			break;
 
 		/*
-		**	Request that the unit/infantry/aircraft go into idle mode.
+		**	Request that the unit/infantry/aircraft/building go into idle mode.
+		**	Added support for buildings based on RA equivalent from https://github.com/Rampastring/CnC_Remastered_Collection - Reaperrr 06/11/2020
 		*/
 		case IDLE:
 			techno = As_Techno(Data.Target.Whom);
-			if (techno && techno->IsActive && !techno->IsInLimbo && !techno->IsTethered) {
+			if (techno && techno->IsActive && !techno->IsInLimbo && !techno->IsTethered &&
+				(techno->What_Am_I() != RTTI_BUILDING || techno->Mission != MISSION_DECONSTRUCTION)) {
 				techno->Assign_Destination(TARGET_NONE);
 				techno->Assign_Target(TARGET_NONE);
 				techno->Enter_Idle_Mode();
